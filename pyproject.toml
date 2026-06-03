@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "test-gen-agent"
+version = "0.1.0"
+description = "AI-powered pytest test suite generator using Claude"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "test-gen-agent contributors" },
+]
+keywords = ["testing", "pytest", "ai", "claude", "anthropic", "code-generation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Testing",
+]
+dependencies = [
+    "anthropic>=0.40.0",
+    "click>=8.1",
+    "rich>=13.0",
+    # ast is part of the Python standard library — no extra install needed
+]
+
+[project.scripts]
+test-gen = "test_gen_agent.cli:main"
+
+[project.urls]
+Repository = "https://github.com/example/test-gen-agent"
+
+[tool.hatch.build.targets.wheel]
+packages = ["test_gen_agent"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
